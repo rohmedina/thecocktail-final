@@ -1,3 +1,4 @@
+<!-- eslint-disable -->
 <template>
   <div class="container mt-50 pt-5">
     <div class="columns">
@@ -7,13 +8,13 @@
       </div>
       <div>
         <b-card-group deck>
-          <b-card title="Title" img-src="../assets/img/drink2.jpg" img-alt="Image" img-top> </b-card>
+          <b-card title="Nombre Bar" img-src="img/aso1.jpg" img-alt="Image" img-top> </b-card>
 
-          <b-card title="Title" img-src="https://picsum.photos/300/300/?image=41" img-alt="Image" img-top> </b-card>
+          <b-card title="Nombre Bar" img-src="img/aso2.jpg" img-alt="Image" img-top> </b-card>
 
-          <b-card title="Title" img-src="https://picsum.photos/300/300/?image=41" img-alt="Image" img-top> </b-card>
+          <b-card title="Nombre Bar" img-src="img/aso3.jpg" img-alt="Image" img-top> </b-card>
 
-          <b-card title="Title" img-src="https://picsum.photos/300/300/?image=41" img-alt="Image" img-top> </b-card>
+          <b-card title="Nombre Bar" img-src="img/aso4.jpg" img-alt="Image" img-top> </b-card>
         </b-card-group>
       </div>
     </div>

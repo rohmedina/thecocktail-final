@@ -1,16 +1,17 @@
+<!-- eslint-disable -->
 <template>
-  <div class="container mt-50 pt-5">
+  <div class="container registro pt-5">
     <div class="columns">
       <div class="column is-6 is-offset-3 p-5">
         <h3 class="title is-3">Crear una cuenta</h3><hr />
         <form action="#" @submit.prevent="register">
-          <div class="field">
+          <div class="field pb-3">
             <label class="label">Ingresa tu Nombre</label>
             <div class="control">
               <el-input placeholder="Ingresa tu Nombre" v-model="name" clearable type="text" size="small"> </el-input>
             </div>
           </div>
-          <div class="field">
+          <div class="field pb-3">
             <label class="label">Ingresa un Correo</label>
             <div class="control">
               <el-input placeholder="Ingresa un Correo" v-model="email" clearable type="email" size="small"> </el-input>
@@ -76,3 +77,12 @@ export default {
   },
 };
 </script>
+
+<style>
+.registro {
+  max-width: 800px;
+  min-height: 600px;
+  background-image: url(../assets/img/registro_bg.jpg);
+  color: white;
+}
+</style>

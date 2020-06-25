@@ -1,10 +1,11 @@
+<!-- eslint-disable -->
 <template>
-  <div class="container mt-50 pt-5">
+  <div class="container login pt-5">
     <div class="columns">
-      <div class="column is-6 is-offset-3 pt-5">
+      <div class="column is-6 is-offset-3 p-5">
         <h3 class="title is-3">Inicia Sesión</h3><hr />
         <form action="#" @submit.prevent="login">
-          <div class="field">
+          <div class="field pb-3">
             <label class="label">Ingresa tu correo</label>
             <div class="control">
               <el-input placeholder="Ingresa tu Correo" v-model="email" clearable type="email" size="small"> </el-input>
@@ -64,3 +65,12 @@ export default {
   },
 };
 </script>
+
+<style>
+.login {
+  max-width: 800px;
+  min-height: 600px;
+  background-image: url(../assets/img/registro_bg.jpg);
+  color: white;
+}
+</style>

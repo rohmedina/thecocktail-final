@@ -1,3 +1,4 @@
+<!-- eslint-disable -->
 <template>
   <b-navbar toggleable="lg" type="dark" variant="primary" fixed="top">
     <b-navbar-brand href="#">
