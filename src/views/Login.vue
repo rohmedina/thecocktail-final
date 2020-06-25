@@ -1,19 +1,19 @@
 <template>
-  <div class="container mt-50">
+  <div class="container mt-50 pt-5">
     <div class="columns">
-      <div class="column is-6 is-offset-3">
+      <div class="column is-6 is-offset-3 pt-5">
         <h3 class="title is-3">Inicia Sesión</h3><hr />
         <form action="#" @submit.prevent="login">
           <div class="field">
-            <label class="label">Email</label>
+            <label class="label">Ingresa tu correo</label>
             <div class="control">
-              <input v-model="email" class="input" type="email" placeholder="Enter Email" />
+              <el-input placeholder="Ingresa tu Correo" v-model="email" clearable type="email" size="small"> </el-input>
             </div>
           </div>
-          <div class="field">
-            <label class="label">Contraseña</label>
+          <div class="field pb-5">
+            <label class="label">Ingresa tu contraseña</label>
             <div class="control">
-              <input v-model="password" class="input" type="password" placeholder="Enter password" />
+              <el-input placeholder="Ingresa tu Password" v-model="password" clearable type="password" size="small"> </el-input>
             </div>
           </div>
 
@@ -26,6 +26,7 @@
 
 <script>
 import Firebase from "firebase";
+
 export default {
   name: "login",
   data() {
@@ -43,12 +44,20 @@ export default {
             this.$alert("Usuario Logeado con éxito", "Felicitaciones", {
               confirmButtonText: "OK",
             });
-            this.quienSoy;
+            this.$store.commit("changeStateLogin");
             this.$router.push({ name: "Principal" });
+            this.$store.dispatch("login");
           },
           (reject) => {
-            alert("no existe");
+            this.$alert("Usuario no Existe", "Verifica tus datos", {
+              confirmButtonText: "OK",
+            });
             console.log(reject.message);
+          },
+          (data) => {
+            data.user.updateProfile({
+              displayName: this.form.name,
+            });
           }
         );
     },

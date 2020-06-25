@@ -37,6 +37,14 @@ const routes = [
     alias: ["/ingresa", "/logueate", "/ingresar"],
   },
   {
+    path: "/asociados",
+    name: "Asociados",
+    // route level code-splitting
+    // this generates a separate chunk (asociados.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "asociados" */ "../views/Asociados.vue"),
+  },
+  {
     path: "/principal",
     name: "Principal",
     // route level code-splitting
