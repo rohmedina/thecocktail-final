@@ -18,6 +18,9 @@ export default {
 </script>
 
 <style lang="scss">
+html {
+  position: relative;
+}
 #app {
   margin-top: 5vh;
   font-family: Avenir, Helvetica, Arial, sans-serif;

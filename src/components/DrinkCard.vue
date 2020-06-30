@@ -19,7 +19,7 @@
           </ol>
 
           <div class="bottom clearfix">
-            <el-button class="favorite" round icon="el-icon-cold-drink">Favorito</el-button>
+            <el-button class="favorite" round icon="el-icon-cold-drink" @click="favorito(idDrink)">Favorito</el-button>
           </div>
         </div>
       </el-card>
@@ -31,6 +31,26 @@
 export default {
   name: "Drink",
   props: ["idDrink", "strDrink", "strDrinkThumb", "strIngredient1", "strIngredient2"],
+
+  methods: {
+    favorito() {
+      this.$emit("favorito", this.idDrink);
+      console.log(this.idDrink);
+      this.$notify.success({
+        title: "Drink Favorita",
+        message: "Drink añadida a Favoritos",
+        offset: 75,
+        position: "top-left",
+      });
+      let payload = {
+        strDrink: this.strDrink,
+        strDrinkThumb: this.strDrinkThumb,
+        strIngredient1: this.strIngredient1,
+        strIngredient2: this.strIngredient2,
+      };
+      this.$store.dispatch("setFavorito", payload);
+    },
+  },
 };
 </script>
 
