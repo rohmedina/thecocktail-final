@@ -23,7 +23,7 @@
                   </li>
                 </ol>
               </div>
-              <el-button type="danger" round icon="el-icon-delete" @click="elimar(idDrink)">Eliminar</el-button>
+              <el-button class="mb-3" type="danger" round icon="el-icon-delete" @click="eliminar(i)">Eliminar</el-button>
             </el-card>
           </div>
         </el-col>
@@ -53,16 +53,18 @@ export default {
     axios.get("https://us-central1-thecocktail-4df3f.cloudfunctions.net/drinks/drinks/" + correo).then((data) => {
       let favs = data.data.drinksFavoritos;
       this.$store.dispatch("setfavoritos", favs);
-      console.log(favs[0].strDrink);
-      console.log(favs[0].strDrinkThumb);
-      console.log(favs[0].strIngredient1);
-      console.log(favs[0].strIngredient2);
     });
   },
 
   methods: {
-    elimar() {
-      this.eliminarDrink();
+    eliminar(i) {
+      this.$store.dispatch("eliminarDrink", i);
+      this.$notify.error({
+        title: "Drink Eliminado",
+        message: "Drink fue eliminado de Favoritos",
+        offset: 75,
+        position: "top-left",
+      });
     },
   },
 };

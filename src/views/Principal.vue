@@ -17,7 +17,7 @@
 
     <el-container class="container" :class="{ 'd-none': mostrarBusqueda }">
       <el-row :gutter="20">
-        <DrinkCard v-for="(drink, i) in drinks" :key="i" :strDrinkThumb="drink.img" :strDrink="drink.nombre" :strIngredient1="drink.ing1" :strIngredient2="drink.ing2" :idDrink="drink.id" />
+        <DrinkCard v-for="(drink, i) in drinks" :key="i" :strDrinkThumb="drink.img" :strDrink="drink.nombre" :strIngredient1="drink.ing1" :strIngredient2="drink.ing2" :idDrink="drink.id" :drinks="drinks" />
       </el-row>
     </el-container>
   </div>
@@ -76,7 +76,7 @@ export default {
         ing1: filtered[0].ing1,
         ing2: filtered[0].ing2,
       };
-      console.log(filtered[0].nombre);
+      // console.log(filtered[0].nombre);
     },
     limpiarBuscador() {
       this.drinkBuscado = {};

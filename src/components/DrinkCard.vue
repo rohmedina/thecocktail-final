@@ -28,14 +28,20 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "Drink",
-  props: ["idDrink", "strDrink", "strDrinkThumb", "strIngredient1", "strIngredient2"],
+
+  props: ["idDrink", "strDrink", "strDrinkThumb", "strIngredient1", "strIngredient2", "drinks"],
+
+  computed: {
+    ...mapState(["favoritos"]),
+  },
 
   methods: {
     favorito() {
       this.$emit("favorito", this.idDrink);
-      console.log(this.idDrink);
+      // console.log(this.idDrink);
       this.$notify.success({
         title: "Drink Favorita",
         message: "Drink añadida a Favoritos",

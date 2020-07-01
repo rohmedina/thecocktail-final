@@ -38,8 +38,8 @@ export default new Vuex.Store({
     SET_FAVORITOS(state, favs) {
       state.favoritos = favs;
     },
-    eliminarDrink(state, newFavoritos) {
-      state.favoritos = newFavoritos;
+    eliminarDrink(state, i) {
+      state.favoritos.splice(i, 1);
     },
   },
   //aun funciona
@@ -47,36 +47,42 @@ export default new Vuex.Store({
     setfavoritos({ commit }, favs) {
       commit("SET_FAVORITOS", favs);
     },
+
     setStateFavoritos({ commit, state }, drink) {
       let drinks = state.favoritos;
-      drinks.push(drink);
+      // console.log(drinks);
+      // console.log(drink);
+      if (!drinks.find((f) => f.idDrink === drink.idDrink)) {
+        drinks.push(drink);
+        let payload = {
+          email: Firebase.auth().currentUser.email,
+          drinks: {
+            drinksFavoritos: drinks,
+          },
+        };
+        axios.post("https://us-central1-thecocktail-4df3f.cloudfunctions.net/drinks/drink", payload).then((data) => {
+          commit("setStateFavoritos", drinks);
+        });
+      } else {
+        alert("Este Drink ya existe en favoritos");
+      }
+    },
 
-      let idDrink = drink.idDrink;
-      let strDrink = drink.strDrink;
-      let strDrinkThumb = drink.strDrinkThumb;
-
+    eliminarDrink({ commit, state }, i) {
+      let email = Firebase.auth().currentUser.email;
+      let drinks = state.favoritos;
+      let favs = {
+        drinks,
+      };
       let payload = {
         email: Firebase.auth().currentUser.email,
         drinks: {
           drinksFavoritos: drinks,
         },
       };
+      commit("eliminarDrink", i);
       axios.post("https://us-central1-thecocktail-4df3f.cloudfunctions.net/drinks/drink", payload).then((data) => {
-        commit("setStateFavoritos", drinks);
-      });
-    },
-    eliminarDrink({ commit, state }, drink) {
-      let favoritos = state.favoritos;
-      let newFavoritos = favoritos.filter((f) => f.idDrink !== drink.idDrink);
-
-      let payload = {
-        email: Firebase.auth().currentUser.email,
-        drinks: {
-          drinksFavoritos: newFavoritos,
-        },
-      };
-      axios.post("https://us-central1-thecocktail-4df3f.cloudfunctions.net/drinks/drink", payload).then((data) => {
-        commit("eliminarDrink", newFavoritos);
+        console.log(data);
       });
     },
     logout({ commit }) {
