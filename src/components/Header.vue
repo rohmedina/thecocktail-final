@@ -35,7 +35,7 @@ export default {
 <style scoped>
 .container-portada {
   width: 100%;
-  height: 400px;
+  height: 450px;
   position: relative;
   background-image: url(../assets/img/barra1_1200.jpg);
   background-size: 130%;

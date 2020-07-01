@@ -29,6 +29,7 @@
         </b-navbar-nav>
         <b-nav-item right>
           <div v-if="userLogin">
+            <el-button type="success" round @click="quienSoy">Quien soy?</el-button>
             <el-button type="danger" round @click="logout">Log Out</el-button>
           </div>
         </b-nav-item>
@@ -38,17 +39,27 @@
 </template>
 
 <script>
+import Firebase from "firebase";
 export default {
   name: "",
   computed: {
     userLogin() {
       return this.$store.getters.getuserLogin;
+      console.log();
     },
   },
+
   methods: {
     logout() {
       this.$store.dispatch("logout");
       this.$alert("Usuario Deslogueado con éxito", "Vuelve Pronto", {
+        confirmButtonText: "OK",
+      });
+    },
+    quienSoy() {
+      let currentUser = Firebase.auth().currentUser.email;
+      console.log(currentUser);
+      this.$alert(currentUser, "Hola tu eres", {
         confirmButtonText: "OK",
       });
     },
