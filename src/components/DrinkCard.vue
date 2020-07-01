@@ -47,8 +47,9 @@ export default {
         strDrinkThumb: this.strDrinkThumb,
         strIngredient1: this.strIngredient1,
         strIngredient2: this.strIngredient2,
+        idDrink: this.idDrink,
       };
-      this.$store.dispatch("setFavorito", payload);
+      this.$store.dispatch("setStateFavoritos", payload);
     },
   },
 };

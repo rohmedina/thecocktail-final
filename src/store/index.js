@@ -14,6 +14,7 @@ export default new Vuex.Store({
     userLogin: false,
     drinks: [],
     favoritos: [],
+    favs: [],
   },
   getters: {
     getuserLogin(state) {
@@ -32,21 +33,50 @@ export default new Vuex.Store({
       state.userLogin = true;
     },
     setStateFavoritos(state, drinks) {
-      state.drinks = drinks;
+      state.favoritos = drinks;
+    },
+    SET_FAVORITOS(state, favs) {
+      state.favoritos = favs;
+    },
+    eliminarDrink(state, newFavoritos) {
+      state.favoritos = newFavoritos;
     },
   },
+  //aun funciona
   actions: {
-    setFavorito({ commit }, payload) {
-      let favs = {
-        drinksfavorites: [payload],
+    setfavoritos({ commit }, favs) {
+      commit("SET_FAVORITOS", favs);
+    },
+    setStateFavoritos({ commit, state }, drink) {
+      let drinks = state.favoritos;
+      drinks.push(drink);
+
+      let idDrink = drink.idDrink;
+      let strDrink = drink.strDrink;
+      let strDrinkThumb = drink.strDrinkThumb;
+
+      let payload = {
+        email: Firebase.auth().currentUser.email,
+        drinks: {
+          drinksFavoritos: drinks,
+        },
       };
-      let email = Firebase.auth().currentUser.email;
-      let data = {
-        email,
-        favs,
+      axios.post("https://us-central1-thecocktail-4df3f.cloudfunctions.net/drinks/drink", payload).then((data) => {
+        commit("setStateFavoritos", drinks);
+      });
+    },
+    eliminarDrink({ commit, state }, drink) {
+      let favoritos = state.favoritos;
+      let newFavoritos = favoritos.filter((f) => f.idDrink !== drink.idDrink);
+
+      let payload = {
+        email: Firebase.auth().currentUser.email,
+        drinks: {
+          drinksFavoritos: newFavoritos,
+        },
       };
-      axios.post("https://us-central1-thecocktail-4df3f.cloudfunctions.net/drinks/drink", data).then((data) => {
-        console.log(data);
+      axios.post("https://us-central1-thecocktail-4df3f.cloudfunctions.net/drinks/drink", payload).then((data) => {
+        commit("eliminarDrink", newFavoritos);
       });
     },
     logout({ commit }) {

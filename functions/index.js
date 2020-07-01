@@ -5,23 +5,23 @@ const express = require("express");
 const cors = require("cors");
 const router = express();
 router.use(cors({ origin: true }));
-router.get("/drinks/:id", async (req, res) => {
-  const drink = await admin
-    .firestore()
-    .collection("usuarios")
-    .doc(req.params.id)
-    .get()
-    .then((doc) => {
-      if (doc.exists) {
-        console.log("Document data:", doc.data());
-        return doc.data();
-      } else {
-        console.log("No such document!");
-        return {};
-      }
-    });
-  res.send(drink);
-});
+// router.get("/drinks/:id", async (req, res) => {
+//   const drink = await admin
+//     .firestore()
+//     .collection("usuarios")
+//     .doc(req.params.id)
+//     .get()
+//     .then((doc) => {
+//       if (doc.exists) {
+//         console.log("Document data:", doc.data());
+//         return doc.data();
+//       } else {
+//         console.log("No such document!");
+//         return {};
+//       }
+//     });
+//   res.send(drink);
+// });
 router.get("/drinks/:id", async (req, res) => {
   const drinks = await admin
     .firestore()
@@ -47,7 +47,7 @@ router.post("/drink", async (req, res) => {
     .firestore()
     .collection("usuarios")
     .doc(req.body.email)
-    .set(req.body.favs)
+    .set(req.body.drinks)
     .then(() => {
       return "todo bien";
     });
