@@ -8,7 +8,7 @@ Aplicación conectada con tus gustos, podras encontrar tus tragos favoritos, adq
 
 ## Diseño
 
-![](/aquiestaraeldiseño)
+![](/src/assets/img/layout.png)
 
 ## Guía de Estilos
 
